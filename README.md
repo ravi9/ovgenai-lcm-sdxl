@@ -24,6 +24,7 @@ pip install openvino-genai pillow
 
 git lfs install
 git clone https://huggingface.co/rpanchum/lcm-sdxl-ov-fp16-quant_unet/
+wget https://raw.githubusercontent.com/ravi9/ovgenai-lcm-sdxl/refs/heads/main/run-lcm-sdxl-ov.py
 
 python run-lcm-sdxl-ov.py -m lcm-sdxl-ov-fp16-quant_unet -ni 3
 ```
