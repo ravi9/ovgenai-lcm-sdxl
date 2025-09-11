@@ -15,13 +15,14 @@ pip install openvino-genai pillow
 python run-lcm-sdxl-ov.py -m lcm-sdxl-ov-fp16
 ```
 
-## Quick Start for Running by downloading Hugging Face model:
+## Quick Start Inference by downloading Hugging Face model:
 - [lcm-sdxl-ov-fp16-quant_unet on Huggingface](https://huggingface.co/rpanchum/lcm-sdxl-ov-fp16-quant_unet)
 ```bash
 python3 -m venv ov-infer-lcm-sdxl-env
 source ov-infer-lcm-sdxl-env/bin/activate
 pip install openvino-genai pillow 
 
+sudo apt install git-lfs
 git lfs install
 git clone https://huggingface.co/rpanchum/lcm-sdxl-ov-fp16-quant_unet/
 wget https://raw.githubusercontent.com/ravi9/ovgenai-lcm-sdxl/refs/heads/main/run-lcm-sdxl-ov.py
@@ -29,7 +30,7 @@ wget https://raw.githubusercontent.com/ravi9/ovgenai-lcm-sdxl/refs/heads/main/ru
 python run-lcm-sdxl-ov.py -m lcm-sdxl-ov-fp16-quant_unet -ni 3
 ```
 
-## Quick Start for Exporting and Running:
+## Quick Start for Exporting and Inference:
 
 ```bash
 # 1. (First time) create and install deps
@@ -44,19 +45,17 @@ python run-lcm-sdxl-ov.py -m lcm-sdxl-ov-fp16
 
 ## 1. Environment Setup
 
-One-time environment creation (do NOT repeat unless you want a fresh env):
+One-time environment creation (do NOT repeat unless you want a fresh env). This creates a virtual environment: `ov-dev-lcm-sdxl-env`:
 ```bash
 source setup.sh     # Windows: use `setup.bat`
 ```
 
-Activate the environment in any future shell session:
+Activate the environment in any future shell session. This activates a virtual environment: `ov-dev-lcm-sdxl-env`:
 ```bash
 source ov-dev-lcm-sdxl-env/bin/activate
 
 # Windows: ov-dev-lcm-sdxl-env\Scripts\activate 
 ```
-
-This creates a virtual environment: `ov-dev-lcm-sdxl-env`
 
 ## 2. Export SDXL + LCM to OpenVINO
 
@@ -71,11 +70,9 @@ This will:
   - `lcm-sdxl-ov-fp16/`
   - `lcm-sdxl-ov-int8/` (weight quantized)
 
-If the export fails re-run after ensuring network / HF auth (if required).
-
 ## 3. (Optional) Post-Quantize Only the UNet
 
-If you want an INT8 UNet and remaining components in FP16:
+If you want an INT8 UNet and the remaining components in FP16:
 
 ```bash
 # You can change calibration subset size (default 200):
